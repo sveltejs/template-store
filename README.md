@@ -1,4 +1,4 @@
-# svelte app [![Build Status](https://travis-ci.org/bahmutov/template-store.svg?branch=master)](https://travis-ci.org/bahmutov/template-store)
+# svelte app [![Build Status](https://travis-ci.org/sveltejs/template-store.svg?branch=master)](https://travis-ci.org/sveltejs/template-store)
 
 This is a simple demonstration of a [Svelte](https://svelte.technology) app using [svelte/store](https://svelte.technology/guide#state-management). It lives at https://github.com/sveltejs/template-store.
 
