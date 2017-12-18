@@ -1,4 +1,4 @@
-# svelte app
+# svelte app [![Build Status](https://travis-ci.org/bahmutov/template-store.svg?branch=master)](https://travis-ci.org/bahmutov/template-store)
 
 This is a simple demonstration of a [Svelte](https://svelte.technology) app using [svelte/store](https://svelte.technology/guide#state-management). It lives at https://github.com/sveltejs/template-store.
 
@@ -64,3 +64,7 @@ Then, from within your project folder:
 npm run build
 surge public
 ```
+
+## End to end testing
+
+Uses [Cypress.io](https://www.cypress.io/) test runner, see [cypress/integration/spec.js](cypress/integration/spec.js). To start the server, run the tests and shut down the server use `npm test` command. To open test runner and run tests with the GUI use `npm run cy:open` command.
