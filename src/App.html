@@ -1,10 +1,10 @@
-<h1>Hello {{$name}}!</h1>
+<h1>Hello {$name}!</h1>
 <Greeting/>
 
 <p>Open the console and try interacting with the store:</p>
 
 <pre>
-store.set({ name: 'everybody' });
+{"store.set({ name: 'everybody' })"};
 </pre>
 
 <style>
@@ -14,11 +14,9 @@ store.set({ name: 'everybody' });
 </style>
 
 <script>
-	import Greeting from './Greeting.html'
-
 	export default {
 		components: {
-			Greeting
+			Greeting: './Greeting.html'
 		}
 	}
 </script>

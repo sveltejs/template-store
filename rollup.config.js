@@ -1,8 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import buble from 'rollup-plugin-buble';
-import uglify from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -11,24 +10,22 @@ export default {
 	output: {
 		sourcemap: true,
 		format: 'iife',
+		name: 'app',
 		file: 'public/bundle.js'
 	},
-	name: 'app',
 	plugins: [
 		svelte({
+			// opt in to v3 behaviour today
+			skipIntroByDefault: true,
+			nestedTransitions: true,
+
 			// enable run-time checks when not in production
 			dev: !production,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			css: css => {
 				css.write('public/bundle.css');
-			},
-
-			// this results in smaller CSS files
-			cascade: false,
-
-			// we need this for now — in v2 it'll be the default
-			store: true
+			}
 		}),
 
 		// If you have external dependencies installed from
@@ -40,8 +37,7 @@ export default {
 		commonjs(),
 
 		// If we're building for production (npm run build
-		// instead of npm run dev), transpile and minify
-		production && buble({ exclude: 'node_modules/**' }),
-		production && uglify()
+		// instead of npm run dev), minify
+		production && terser()
 	]
 };
