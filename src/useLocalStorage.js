@@ -4,7 +4,7 @@ export default function useLocalStorage(store, key) {
 		store.set(JSON.parse(json));
 	}
 
-	store.onchange(state => {
-		localStorage.setItem(key, JSON.stringify(state));
+	store.on('state', ({ current }) => {
+		localStorage.setItem(key, JSON.stringify(current));
 	});
 }
