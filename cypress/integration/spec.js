@@ -3,7 +3,7 @@ describe('Template store app', () => {
     cy.visit('/')
   })
 
-  const getStore = () => cy.window().its('app.store')
+  const getStore = () => cy.window().its('username')
 
   it('starts with "world"', () => {
     cy.contains('h1', 'Hello world!')
@@ -15,21 +15,19 @@ describe('Template store app', () => {
 
   it('can change name', () => {
     getStore().then(store => {
-      store.set({ name: 'Cypress' })
+      store.set('Cypress')
     })
     cy.contains('h1', 'Hello Cypress!')
   })
 
-  it('uses localStorage as backup', () => {
+	it('uses localStorage as backup', () => {
     getStore().then(store => {
-      store.set({ name: 'Cypress' })
+      store.set('Cypress')
     })
-    const serialized = JSON.stringify({
-      name: 'Cypress',
-    })
+    const serialized = JSON.stringify('Cypress')
     cy
       .window()
-      .its('localStorage.my-app')
+      .its('localStorage.username')
       .should('equal', serialized)
   })
 })
@@ -37,10 +35,8 @@ describe('Template store app', () => {
 it('reads store from localStorage on load', () => {
   cy.visit('/', {
     onBeforeLoad: win => {
-      const serialized = JSON.stringify({
-        name: 'Local User',
-      })
-      win.localStorage.setItem('my-app', serialized)
+      const serialized = JSON.stringify('Local User')
+      win.localStorage.setItem('username', serialized)
     },
   })
 

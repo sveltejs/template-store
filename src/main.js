@@ -1,19 +1,12 @@
-import App from './App.html';
-import { Store } from 'svelte/store.js';
-import useLocalStorage from './useLocalStorage.js';
+import App from './App.svelte';
+import { username } from './stores.js';
+import use_local_storage from './use_local_storage.js';
 
-const store = new Store({
-	name: 'world'
-});
-
-window.store = store;
-
-// save data to localStorage every time our state changes
-useLocalStorage(store, 'my-app');
+window.username = username;
+use_local_storage(username, 'username');
 
 const app = new App({
-	target: document.body,
-	store
+	target: document.body
 });
 
 export default app;
